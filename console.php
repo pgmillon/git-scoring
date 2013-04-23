@@ -134,6 +134,7 @@ class ScoreCommand extends Command {
     $body->setParts(array($htmlMsg));
     
     $mail = new Mail\Message();
+    $mail->setEncoding('utf-8');
     $mail->setSubject($this->config['email_subject']);
     $mail->setFrom($this->config['email_sender']);
     $mail->addTo($this->config['email_to']);
