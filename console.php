@@ -175,11 +175,11 @@ class ScoringApplication extends Application {
     $this->add(new ScoreCommand());
   }
   
-  public static function run() {
+  public static function execute() {
     $app = new ScoringApplication();
     $app->run();
   }
   
 }
 
-ScoringApplication::run();
+ScoringApplication::execute();
