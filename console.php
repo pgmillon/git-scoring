@@ -140,10 +140,11 @@ class ScoreCommand extends Command {
     $mail->addTo($this->config['email_to']);
     $mail->setBody($body);
     
-//    var_dump($this->config->toArray());
-//    $transport = new Mail\Transport\Smtp();
-//    $transportOptions = new Mail\Transport\SmtpOptions();
-    (new Mail\Transport\File())->send($mail);
+    $transport = new Mail\Transport\Smtp();
+    $transportOptions = new Mail\Transport\SmtpOptions($this->config['smtp']);
+    $transport->setOptions($transportOptions);
+    
+    $transport->send($mail);
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
@@ -175,6 +176,11 @@ class ScoringApplication extends Application {
     $this->add(new ScoreCommand());
   }
   
+  public static function run() {
+    $app = new ScoringApplication();
+    $app->run();
+  }
+  
 }
 
-(new ScoringApplication())->run();
+ScoringApplication::run();
