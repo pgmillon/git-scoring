@@ -1,0 +1,23 @@
+{
+  "name": "vendor/git-scoring",
+  "description": "Description of project git-scoring.",
+  "authors": [
+    {
+      "name": "Pierre-Gildas MILLON",
+      "email": "pierre-gildas.millon@ineat-conseil.fr"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.zendframework.com/"
+    }
+  ],
+  "require": {
+    "twig/twig": "1.*",
+    "symfony/console": "2.*",
+    "symfony/yaml": "2.*",
+    "zendframework/zend-config": "2.*",
+    "zendframework/zend-mail": "2.*"
+  }
+}
