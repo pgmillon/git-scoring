@@ -50,13 +50,13 @@ class ScoreCommand extends Command {
     $configReader = new Reader\Yaml(array('Symfony\Component\Yaml\Yaml', 'parse'));
     $configArray  = $configReader->fromFile(__DIR__ . '/config.yml');
     $iterator     = new RecursiveIteratorIterator(new RecursiveArrayIterator($configArray));
-    $config       = new Config([], true);
+    $config       = new Config(array(), true);
     $processor    = new Processor\Token(array(
       'APPLICATION_PATH' => __DIR__
     ));
     
     foreach($iterator as $key => $value) {
-      $paths = [];
+      $paths = array();
       if(is_numeric($key)) {
         foreach(range(0, $iterator->getDepth() - 1) as $depth) {
           $paths[] = $iterator->getSubIterator($depth)->key();
@@ -64,7 +64,7 @@ class ScoreCommand extends Command {
         if(isset($config[join('_', $paths)])) {
           $config[join('_', $paths)][$key] = $value;
         } else {
-          $config[join('_', $paths)] = [$key => $value];
+          $config[join('_', $paths)] = array($key => $value);
         }
       } else {
         foreach(range(0, $iterator->getDepth()) as $depth) {
@@ -73,9 +73,9 @@ class ScoreCommand extends Command {
             $arrayValue = $value;
             foreach(range($iterator->getDepth(), $depth + 1) as $reverseDepth) {
               $reverseKey = $iterator->getSubIterator($reverseDepth)->key();
-              $arrayValue = [
+              $arrayValue =  array(
                 $reverseKey => $arrayValue
-              ];
+              );
             }
             $value = $arrayValue;
             break;
@@ -91,7 +91,6 @@ class ScoreCommand extends Command {
         }
       }
     };
-    var_dump($config->toArray());
     
     $processor->process($config);
     
@@ -111,7 +110,7 @@ class ScoreCommand extends Command {
     if(is_readable($filename)) {
       return json_decode(file_get_contents($filename), true);
     } else {
-      return [];
+      return array();
     }
   }
   
@@ -128,11 +127,11 @@ class ScoreCommand extends Command {
   protected function sendEmail($scores) {
     $twig   = new Twig_Environment(new Twig_Loader_Filesystem($this->config['template_dir']));
     
-    $htmlMsg = new Mime\Part($twig->render('email/scores.twig', ['scores' => $scores]));
+    $htmlMsg = new Mime\Part($twig->render('email/scores.twig', array('scores' => $scores)));
     $htmlMsg->type = 'text/html';
     
     $body = new Mime\Message();
-    $body->setParts([$htmlMsg]);
+    $body->setParts(array($htmlMsg));
     
     $mail = new Mail\Message();
     $mail->setSubject($this->config['email_subject']);
