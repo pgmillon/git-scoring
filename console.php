@@ -134,15 +134,11 @@ class ScoreCommand extends Command {
     $body->setParts(array($htmlMsg));
     
     $mail = new Mail\Message();
-    
-    $headers = $mail->getHeaders();
-    $headers->removeHeader('Content-Type');
-    $headers->addHeaderLine('Content-Type', 'text/html; charset=UTF-8');
-    
     $mail->setSubject($this->config['email_subject']);
     $mail->setFrom($this->config['email_sender']);
     $mail->addTo($this->config['email_to']);
     $mail->setBody($body);
+    $mail->setEncoding('UTF-8');
     
     $transport = new Mail\Transport\Smtp();
     $transportOptions = new Mail\Transport\SmtpOptions($this->config['smtp']);
