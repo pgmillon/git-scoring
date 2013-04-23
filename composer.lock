@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e9ec0883994a75521162a89c713b5f82",
+    "hash": "68ef4d53bcbb194b9f70327ef9ee2c48",
     "packages": [
         {
             "name": "symfony/console",
@@ -331,6 +331,52 @@
                 "source": "https://github.com/zendframework/Component_ZendMime/tree/release-2.1.2"
             },
             "time": "2013-02-14 14:56:52"
+        },
+        {
+            "name": "zendframework/zend-servicemanager",
+            "version": "2.1.5",
+            "target-dir": "Zend/ServiceManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendServiceManager.git",
+                "reference": "release-2.1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.zendframework.com/composer/zendframework-zend-servicemanager-2.1.5-release-2.1.5-acb4f2.zip",
+                "reference": "2.1.5",
+                "shasum": "adba3da7a2011af8544fde8bb8743d9bb51fb984"
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-di": "Zend\\Di component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev",
+                    "dev-develop": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\ServiceManager\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": " ",
+            "keywords": [
+                "servicemanager",
+                "zf2"
+            ],
+            "support": {
+                "source": "https://github.com/zendframework/Component_ZendServiceManager/tree/release-2.1.5"
+            },
+            "time": "2013-04-17 11:42:28"
         },
         {
             "name": "zendframework/zend-stdlib",

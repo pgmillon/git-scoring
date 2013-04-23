@@ -18,6 +18,7 @@
     "symfony/console": "2.*",
     "symfony/yaml": "2.*",
     "zendframework/zend-config": "2.*",
-    "zendframework/zend-mail": "2.*"
+    "zendframework/zend-mail": "2.*",
+    "zendframework/zend-servicemanager": "2.*"
   }
 }
