@@ -128,7 +128,7 @@ class ScoreCommand extends Command {
     $twig   = new Twig_Environment(new Twig_Loader_Filesystem($this->config['template_dir']));
     
     $htmlMsg = new Mime\Part($twig->render('email/scores.twig', array('scores' => $scores)));
-    $htmlMsg->type = 'text/html';
+    $htmlMsg->type = 'text/html; charset=utf-8';
     
     $body = new Mime\Message();
     $body->setParts(array($htmlMsg));
@@ -138,7 +138,6 @@ class ScoreCommand extends Command {
     $mail->setFrom($this->config['email_sender']);
     $mail->addTo($this->config['email_to']);
     $mail->setBody($body);
-    $mail->setEncoding('UTF-8');
     
     $transport = new Mail\Transport\Smtp();
     $transportOptions = new Mail\Transport\SmtpOptions($this->config['smtp']);
